@@ -23,7 +23,7 @@ Get a full fake REST API with zero coding in less than 30 seconds (seriously).
 
 ## Build Instructions
 
-Build for amd64, armv7l or arm64 architecture (thanks to its [Multi-Arch](https://blog.docker.com/2017/11/multi-arch-all-the-things/) base image)
+Build for amd64 or armv7l architecture (thanks to its [Multi-Arch](https://blog.docker.com/2017/11/multi-arch-all-the-things/) base image)
 
 ``` sh
 docker build -t elswork/json-server .

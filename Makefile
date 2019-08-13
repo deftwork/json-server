@@ -4,7 +4,7 @@ VER ?= `cat VERSION`
 BASE ?= 10-alpine
 BASENAME ?= node:$(BASE)
 ARCH2 ?= armv7l
-ARCH3 ?= arm64
+# ARCH3 ?= arm64
 GOARCH := $(shell uname -m)
 ifeq ($(GOARCH),x86_64)
 	GOARCH := amd64
@@ -12,9 +12,9 @@ endif
 ifeq ($(GOARCH),armv7l)
 	GOARCH := arm7
 endif
-ifeq ($(GOARCH),aarch64)
-	GOARCH := arm64
-endif
+#ifeq ($(GOARCH),aarch64)
+#	GOARCH := arm64
+#endif
 
 # HELP
 # This will output the help for each task
@@ -49,12 +49,10 @@ deploy: ## Build Tag and Push the container
 manifest: ## Create an push manifest
 	docker manifest create $(NAME):$(VER) \
 	$(NAME):$(GOARCH)_$(VER) \
-	$(NAME):$(ARCH2)_$(VER) \
-	$(NAME):$(ARCH3)_$(VER)
+	$(NAME):$(ARCH2)_$(VER) 
 	docker manifest push --purge $(NAME):$(VER)
 	docker manifest create $(NAME):latest $(NAME):$(GOARCH) \
-	$(NAME):$(ARCH2) \
-	$(NAME):$(ARCH3)
+	$(NAME):$(ARCH2) 
 	docker manifest push --purge $(NAME):latest
 run: ## Create the container
 	docker run -d -p 3000:3000 -v `pwd`:/data  \
