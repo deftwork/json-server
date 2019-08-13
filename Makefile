@@ -56,6 +56,12 @@ manifest: ## Create an push manifest
 	$(NAME):$(ARCH2) \
 	$(NAME):$(ARCH3)
 	docker manifest push --purge $(NAME):latest
-run:
-	docker run -d -p 3000:3000  -v `pwd`:/data  \
-      elswork/json-server:arm7 --watch db.json
+run: ## Create the container
+	docker run -d -p 3000:3000 -v `pwd`:/data  \
+      --name my_$(SNAME) $(NAME):$(GOARCH) --watch db.json
+start: ## Start the container
+	docker start my_$(SNAME)
+stop: ## Stop the container
+	docker stop my_$(SNAME)
+delete: ## Delete the container
+	docker rm my_$(SNAME)
