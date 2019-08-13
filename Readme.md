@@ -1,4 +1,4 @@
-# json-server
+# JSON-Server
 
 A [Docker](http://docker.com) file to build images for AMD & ARM devices with a installation of [JSON Server](https://github.com/typicode/json-server) that is a fast and simple to deploy a full fake REST API with zero coding.
 
