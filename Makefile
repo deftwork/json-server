@@ -3,7 +3,7 @@ NAME ?= elswork/$(SNAME)
 VER ?= `cat VERSION`
 BASE ?= 10-alpine
 BASENAME ?= node:$(BASE)
-ARCH2 ?= armv7l
+ARCH2 ?= arm7
 # ARCH3 ?= arm64
 GOARCH := $(shell uname -m)
 ifeq ($(GOARCH),x86_64)
@@ -49,7 +49,7 @@ deploy: ## Build Tag and Push the container
 manifest: ## Create an push manifest
 	docker manifest create $(NAME):$(VER) \
 	$(NAME):$(GOARCH)_$(VER) \
-	$(NAME):$(ARCH2)_$(VER) 
+	$(NAME):$(ARCH2)_$(VER)
 	docker manifest push --purge $(NAME):$(VER)
 	docker manifest create $(NAME):latest $(NAME):$(GOARCH) \
 	$(NAME):$(ARCH2) 
